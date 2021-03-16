@@ -1,0 +1,5 @@
+drwxr-xr-x 3 fabulous fabulous 4096 Mar  5 09:54 .
+drwxrwxr-x 8 fabulous fabulous 4096 Mar  4 10:00 ..
+drwxr-xr-x 2 fabulous fabulous 4096 Mar  5 09:35 filelist
+-rw-rw-r-- 1 fabulous fabulous  547 Mar  5 09:54 main.go
+-rw-rw-r-- 1 fabulous fabulous    0 Mar  5 09:54 test.txt
