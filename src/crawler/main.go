@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	// "io/ioutil"
 	"net/http"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 func main() {
@@ -28,9 +30,6 @@ func main() {
 		fmt.Printf("Error occured, status code: %d", res.StatusCode)
 	}
 
-	content, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%s\n", content)
+	// 使用regexp读取数据
+
 }
