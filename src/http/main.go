@@ -1,6 +1,6 @@
 package main
 
-import "http/client"
+import client "hellosz.top/src/http/client"
 
 func main() {
 	// url := "https://www.imooc.com/"

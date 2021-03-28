@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	queue "queue/entry"
+	queue "hellosz.top/src/queue/entry"
 )
 
 func main() {
