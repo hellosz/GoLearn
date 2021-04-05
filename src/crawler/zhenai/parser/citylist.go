@@ -1,11 +1,16 @@
+// Package provides ...
 package parser
 
 import (
 	"bytes"
-	"crawler/types"
 	"github.com/PuerkitoBio/goquery"
+	"hellosz.top/src/crawler/types"
 	"log"
 )
+
+// const citySelector = ".city-list>dd>a"
+// TODO for test
+const citySelector = ".city-list a[href='http://www.zhenai.com/zhenghun/aba']"
 
 // ParseCityList 解析城市列表
 func ParseCityList(contents []byte) types.ParseResult {
@@ -17,7 +22,7 @@ func ParseCityList(contents []byte) types.ParseResult {
 
 	// 解析结果
 	var result types.ParseResult
-	dom.Find(".city-list>dd>a").Each(func(i int, selection *goquery.Selection) {
+	dom.Find(citySelector).Each(func(i int, selection *goquery.Selection) {
 		url := selection.AttrOr("href", "nil href")
 		text := selection.Text()
 
@@ -25,7 +30,7 @@ func ParseCityList(contents []byte) types.ParseResult {
 		result.Items = append(result.Items, text)
 		result.Requests = append(result.Requests, types.Request{
 			Url:        url,
-			ParserFunc: types.NilParser,
+			ParserFunc: ParseCity,
 		})
 
 		// 打印解析结果
