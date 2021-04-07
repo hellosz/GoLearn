@@ -8,9 +8,10 @@ import (
 	"log"
 )
 
-// const citySelector = ".city-list>dd>a"
+const citySelector = ".city-list>dd>a"
+
 // TODO for test
-const citySelector = ".city-list a[href='http://www.zhenai.com/zhenghun/aba']"
+// const citySelector = ".city-list a[href='http://www.zhenai.com/zhenghun/aba']"
 
 // ParseCityList 解析城市列表
 func ParseCityList(contents []byte) types.ParseResult {
