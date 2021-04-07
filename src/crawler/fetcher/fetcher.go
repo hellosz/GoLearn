@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"time"
 )
 
 const beforeScheme = "http://"
@@ -14,11 +15,15 @@ const afterScheme = "https://"
 // 累计获取的url数量
 var FetchedUrlCount = 0
 
+// 简易限流器
+var RateLimiter = time.Tick(100 * time.Millisecond)
+
 // Fetch fetch data from url
 func Fetch(url string) ([]byte, error) {
 	// 输出日志当前获取的url数量
 	log.Printf("FetchedUrlCount: %d", FetchedUrlCount)
 	FetchedUrlCount++
+	<-RateLimiter
 
 	// 转换协议
 	url = transSchema(url)
