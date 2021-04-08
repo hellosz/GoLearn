@@ -1,25 +1,33 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"time"
 
+	"hellosz.top/src/import/utils"
 	"hellosz.top/src/import/worker"
 )
 
 const workerCount = 20
 
 func main() {
+	// 读取配置文件
+	configPath := flag.String("path", "config.yaml", "yml配置文件的地址")
+	flag.Parse()
+
+	config := utils.Config{}
+	realconfig := config.Get(*configPath)
 
 	// 扫描目录
 	fmt.Println("读取目录")
-	files := worker.ScanDir(worker.Dir)
+	files := worker.ScanDir(realconfig.LogDir)
 	fileChan := make(chan worker.FileInfo, 5)
 
 	// 创建工作者
 	fmt.Println("创建goroutine")
-	for i := 0; i < workerCount; i++ {
-		worker.CreateWorker(fileChan)
+	for i := 0; i < realconfig.WorkerCount; i++ {
+		worker.CreateWorker(fileChan, *realconfig)
 	}
 
 	fmt.Println("开始读取文件")

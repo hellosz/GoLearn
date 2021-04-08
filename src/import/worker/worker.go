@@ -7,6 +7,8 @@ import (
 
 	"hellosz.top/src/import/connetion"
 	"hellosz.top/src/import/parser"
+	"hellosz.top/src/import/utils"
+
 	// "hellosz.top/src/import/connetion"
 	_ "hellosz.top/src/import/model"
 )
@@ -51,9 +53,9 @@ func ReadFile(file string) []byte {
 }
 
 // CreateWorker 建工作者，去读取文件
-func CreateWorker(fileinfo chan FileInfo) {
+func CreateWorker(fileinfo chan FileInfo, config utils.Config) {
 	// 获取数据库连接
-	client := connetion.Get()
+	client := connetion.Get(config.Connection)
 
 	go func() {
 		for {

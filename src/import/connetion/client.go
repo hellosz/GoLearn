@@ -2,17 +2,26 @@ package connetion
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
+	"fmt"
 	"log"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql"
+	"hellosz.top/src/import/utils"
 )
 
 // Connection 数据库连接
 var Connection *sql.DB
 
 // Get 创建数据库连接
-func Get() *sql.DB {
-	Connection, err := sql.Open("mysql", "root:patpat@tcp(192.168.11.131)/mms")
+func Get(config utils.Connection) *sql.DB {
+	if Connection != nil {
+		return Connection
+	}
+
+	// 根据参数配置数据数据库连接
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", config.Username, config.Password, config.Host, config.Port, config.Database)
+	Connection, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Printf("数据库连接失败，原因:%v", err)
 	}

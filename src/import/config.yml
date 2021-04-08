@@ -1,0 +1,11 @@
+# 配置文件
+logDir: /Users/patpat/Documents/Dingding/mms-s3-access-logs/mms 
+workerCount: 20 
+connection:
+    host: 192.168.11.131
+    username: root
+    password: patpat
+    port: 3306
+    database: mms
+
+
