@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"sync"
 
 	"hellosz.top/src/import/connetion"
 	"hellosz.top/src/import/parser"
@@ -53,7 +54,7 @@ func ReadFile(file string) []byte {
 }
 
 // CreateWorker 建工作者，去读取文件
-func CreateWorker(fileinfo chan FileInfo, config utils.Config) {
+func CreateWorker(fileinfo chan FileInfo, config utils.Config, wg *sync.WaitGroup) {
 	// 获取数据库连接
 	client := connetion.Get(config.Connection)
 
@@ -73,6 +74,9 @@ func CreateWorker(fileinfo chan FileInfo, config utils.Config) {
 			} else {
 				log.Printf("保存第%d条数据:%s成功, 返回结果%d", file.FileNum, access.BucketKey, id)
 			}
+
+			// 标识完成
+			wg.Done()
 		}
 	}()
 }

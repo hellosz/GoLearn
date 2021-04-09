@@ -3,10 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"time"
-
 	"hellosz.top/src/import/utils"
 	"hellosz.top/src/import/worker"
+	"sync"
 )
 
 const workerCount = 20
@@ -24,10 +23,14 @@ func main() {
 	files := worker.ScanDir(realconfig.LogDir)
 	fileChan := make(chan worker.FileInfo, 5)
 
+	// 创建waitgroup
+	wg := sync.WaitGroup{}
+	wg.Add(len(files))
+
 	// 创建工作者
 	fmt.Println("创建goroutine")
 	for i := 0; i < realconfig.WorkerCount; i++ {
-		worker.CreateWorker(fileChan, *realconfig)
+		worker.CreateWorker(fileChan, *realconfig, &wg)
 	}
 
 	fmt.Println("开始读取文件")
@@ -39,6 +42,6 @@ func main() {
 		}
 	}
 
-	// 沉睡一秒，保证数据全部读取完毕
-	time.Sleep(1 * time.Second)
+	// 等待数据保存完成
+	wg.Wait()
 }
