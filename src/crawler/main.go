@@ -17,13 +17,16 @@ func main() {
 		ParserFunc: parser.ParseCityList,
 	})
 
-	// 启动引擎，开始爬取
+	// 多进程引擎
 	engine := engine.Concurrent{
-		Scheduler:   &schedule.Scheduler{},
+		Scheduler:   &schedule.Queue{},
 		WorkerCount: 100,
 	}
-
 	engine.Run(seeds)
+
+	// 单进程引擎
+	// engine := engine.Simple{}
+	// engine.Run(seeds)
 }
 
 func testProfile() {

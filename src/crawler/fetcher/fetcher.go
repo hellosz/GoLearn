@@ -23,7 +23,7 @@ func Fetch(url string) ([]byte, error) {
 	// 输出日志当前获取的url数量
 	log.Printf("FetchedUrlCount: %d", FetchedUrlCount)
 	FetchedUrlCount++
-	<-RateLimiter
+	// <-RateLimiter
 
 	// 转换协议
 	url = transSchema(url)

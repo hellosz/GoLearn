@@ -1,6 +1,7 @@
 package engine
 
 import (
+	// "fmt"
 	"log"
 
 	"hellosz.top/src/crawler/types"
@@ -16,18 +17,19 @@ type Concurrent struct {
 type Scheduler interface {
 	Submit(types.Request)
 	ConfigureMasterChanIn(chan types.Request)
+	WorkerReady(chan types.Request)
+	Run()
 }
 
 // Run 启动并发引擎
 func (e *Concurrent) Run(seeds []types.Request) {
 	// channel发送请求，channel接受结果
-	in := make(chan types.Request)
 	out := make(chan types.ParseResult)
-	e.Scheduler.ConfigureMasterChanIn(in)
+	e.Scheduler.Run()
 
 	// 创建Worker
 	for i := 0; i < e.WorkerCount; i++ {
-		e.CreateWorker(in, out)
+		e.CreateWorker(out, e.Scheduler)
 	}
 	// 发送初始请求
 	for _, seed := range seeds {
@@ -49,9 +51,12 @@ func (e *Concurrent) Run(seeds []types.Request) {
 }
 
 // CreateWorker 创建工作者
-func (Concurrent) CreateWorker(in chan types.Request, out chan types.ParseResult) {
+func (Concurrent) CreateWorker(out chan types.ParseResult, s Scheduler) {
+	// 创建单独的worker
+	in := make(chan types.Request)
 	go func() {
 		for {
+			s.WorkerReady(in)
 			request := <-in
 			result, err := Worker(request)
 			if err != nil {
