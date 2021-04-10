@@ -15,9 +15,9 @@ func (s *Queue) Submit(request types.Request) {
 	}()
 }
 
-// ConfigureMasterChanIn 配置输入通道
-func (s *Queue) ConfigureMasterChanIn(chanIn chan types.Request) {
-	panic("deprecated method")
+// WorkChan 每个worker返回一个chan
+func (s *Queue) WorkChan() chan types.Request {
+	return make(chan types.Request)
 }
 
 // WorkerReady 将准备好的worker推送到队列
