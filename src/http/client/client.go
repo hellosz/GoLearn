@@ -68,7 +68,7 @@ func (g GMCCrawler) Crawler(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%q", dump)
-	fmt.Print("OK")
-	fmt.Printf("跳转%d次", redirectNumber)
+	fmt.Printf("%q\n", dump)
+	fmt.Print("OK\n")
+	fmt.Printf("跳转%d次\n", redirectNumber)
 }

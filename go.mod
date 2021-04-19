@@ -8,4 +8,5 @@ require (
 	github.com/nsf/gocode v0.0.0-20190302080247-5bee97b48836 // indirect
 	golang.org/x/text v0.3.5 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopl.io v0.0.0-20200323155855-65c318dde95e // indirect
 )
