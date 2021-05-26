@@ -32,8 +32,11 @@ func (g GMCCrawler) Crawler(url string) {
 	// request.Header.Add("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1")
 	// request.Header.Add("User-Agent", "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.87 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
 	// request.Header.Add("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36")
-	request.Header.Add("User-Agent", "PostmanRuntime/7.26.8")
-	// request.Header.Add("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
+
+	// request.Header.Add("User-Agent", "PostmanRuntime/7.26.8")
+	// fmt.Println("请求网站")
+	request.Header.Add("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
+	fmt.Println("请求h5")
 
 	// 发送请求
 	// resp, err := http.DefaultClient.Do(request)

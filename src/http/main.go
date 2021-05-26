@@ -10,7 +10,8 @@ func main() {
 	// url := "https://www.patpat.com/en/product/Casual-Colorblock-Long-sleeve-Nursing-Tee-443014.html?sku_id=19481960&currency=GBP&country_code=GB"
 	// url := "https://uk.patpat.com/en/product/Casual-Colorblock-Long-sleeve-Nursing-Tee-443014.html?country_code=GB&currency=GBP&sku_id=19481960"
 	// url := "https://uk.patpat.com/product/Baby-Toddler-Girl-Pretty-Floral-Print-Layered-Dresses-454228.html"
-	url := "https://www.patpat.com/en/product/2-piece-Toddler-Girl-Butterfly-Tee-and-Casual-Sporty-Pants-Set-478749.html?sku_id=19793834&currency=EUR&country_code=IE"
+	// url := "https://uk.patpat.com/en/product/Two-piece-Family-Matching-Flower-Printed-Swimsuit-385423.html?sku_id=19013265&currency=GBP&country_code=GB"
+	url := "https://uk-m.patpat.com/en/product/Two-piece-Family-Matching-Flower-Printed-Swimsuit-385423.html?sku_id=19013265&currency=GBP&country_code=GB"
 	client := client.GMCCrawler{}
 	client.Crawler(url)
 }
